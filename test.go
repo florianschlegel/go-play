@@ -63,6 +63,18 @@ func (si stringInt) String() string {
 	return fmt.Sprint("my value is: ", int(si))
 }
 
+type Person struct {
+	Name    string  `json:"name" xml:"name"`
+	Age     int     `json:"age" xml:"age"`
+	Friends *Friend `json:"friends" xml:"friends"`
+}
+
+type Friend struct {
+	Name    string   `json:"name" xml:"name"`
+	Surname string   `json:"surname" xml:"surname"`
+	Address *Address `json:"address" xml:"address"`
+}
+
 type Address struct {
 	Street   string `json:"street"`
 	City     string `json:"city" xml:",comment"`
@@ -71,16 +83,32 @@ type Address struct {
 
 func main() {
 
-	addr := &Address{
-		Street:   "Pienzenauerstrasse 10",
-		City:     "Munich",
-		Addition: "in the back yard",
+	pers := &Person{
+		Name: "Nicola",
+		Age:  25,
+		Friends: &Friend{
+			Name:    "Mario",
+			Surname: "Rossi",
+			Address: &Address{
+				Street:   "Via Corta",
+				City:     "Gradisca",
+				Addition: "App 2",
+			},
+		},
 	}
 
-	jsonBytes, _ := json.MarshalIndent(addr, "", "	")
+	/*
+		addr := &Address{
+			Street:   "Pienzenauerstrasse 10",
+			City:     "Munich",
+			Addition: "in the back yard",
+		}
+	*/
+
+	jsonBytes, _ := json.MarshalIndent(pers, "", "	")
 	fmt.Println(string(jsonBytes))
 
-	xmlBytes, _ := xml.MarshalIndent(addr, "", "	")
+	xmlBytes, _ := xml.MarshalIndent(pers, "", "	")
 	fmt.Println(string(xmlBytes))
 
 	/*
