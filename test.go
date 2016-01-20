@@ -64,9 +64,9 @@ func (si stringInt) String() string {
 }
 
 type Person struct {
-	Name    string  `json:"name" xml:"name"`
-	Age     int     `json:"age" xml:"age"`
-	Friends *Friend `json:"friends" xml:"friends"`
+	Name    string    `json:"name" xml:"name"`
+	Age     int       `json:"age" xml:"age"`
+	Friends []*Friend `json:"friends" xml:"friends"`
 }
 
 type Friend struct {
@@ -86,13 +86,23 @@ func main() {
 	pers := &Person{
 		Name: "Nicola",
 		Age:  25,
-		Friends: &Friend{
-			Name:    "Mario",
-			Surname: "Rossi",
-			Address: &Address{
-				Street:   "Via Corta",
-				City:     "Gradisca",
-				Addition: "App 2",
+		Friends: []*Friend{
+			&Friend{
+				Name:    "Mario",
+				Surname: "Rossi",
+				Address: &Address{
+					Street:   "Via Corta",
+					City:     "Gradisca",
+					Addition: "App 2",
+				},
+			},
+			&Friend{
+				Name:    "Jan",
+				Surname: "Halfar",
+				Address: &Address{
+					Street: "Holzweg 12",
+					City:   "München",
+				},
 			},
 		},
 	}
