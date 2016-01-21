@@ -10,6 +10,8 @@ import (
 
 const request = `<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body><checkVat xmlns="urn:ec.europa.eu:taxud:vies:services:checkVat:types"><countryCode>DE</countryCode><vatNumber>203071105</vatNumber></checkVat></soap:Body></soap:Envelope>`
 
+//const request = ""
+
 func TestCheckVat(t *testing.T) {
 	//soapClient := NewCheckVatPortType("http://ec.europa.eu/taxation_customs/vies/services/checkVatService", false, nil)
 	soapClient := NewCheckVatPortType("http://127.0.0.1:8080/", false, nil)
