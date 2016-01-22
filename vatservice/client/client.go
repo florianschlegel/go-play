@@ -104,7 +104,8 @@ func NewCheckVatPortType(url string, tls bool, auth *BasicAuth) *CheckVatPortTyp
 
 func (service *CheckVatPortType) CheckVat(request *CheckVat) (*CheckVatResponse, error) {
 	response := new(CheckVatResponse)
-	err := service.client.Call("", request, response)
+	soapaction := "operationCheckVat"
+	err := service.client.Call(soapaction, request, response)
 	if err != nil {
 		return nil, err
 	}
